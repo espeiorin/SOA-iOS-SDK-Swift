@@ -8,6 +8,6 @@
 
 import Foundation
 
-public struct SOAQueryResult {
-    
+public struct SOAQueryResult<T> {
+    var records: [T]
 }

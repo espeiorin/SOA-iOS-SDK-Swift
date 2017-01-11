@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import SOA_SDK
+import SOA
 
 class DictionaryExtensionTests: XCTestCase {
     

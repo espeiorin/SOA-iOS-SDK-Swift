@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import SOA_SDK
 
-public struct SOAQuery: SOAEntityProtocol {
-    public typealias EntityType = SOAQueryResult
+public struct SOAQuery<T>: SOAEntityProtocol where T:JSONConvertible {
+    public typealias EntityType = SOAQueryResult<T>
     
     public let requestType: SOARequestType = .rest
     
@@ -35,30 +34,30 @@ public struct SOAQuery: SOAEntityProtocol {
     }
     
     mutating func append(filter: SOAFilter) {
-        
+        filters.append(filter)
     }
     
     mutating func remove(filter: SOAFilter) {
-        
+        filters.remove(filter)
     }
     
     mutating func clearFilters() {
-        
+        filters.removeAll()
     }
     
     mutating func append(join: SOAJoin) {
-        
+        joins.append(join)
     }
     
     mutating func remove(join: SOAJoin) {
-        
+        joins.remove(join)
     }
     
     mutating func clearJoins() {
-        
+        joins.removeAll()
     }
     
-    func execute(completion: (EntityType?, Error?) -> Void) {
+    func execute(completion: @escaping (EntityType?, Error?) -> Void) {
         
         var params = [String:Any]()
         
@@ -82,7 +81,7 @@ public struct SOAQuery: SOAEntityProtocol {
             params["join"] = joins.map({$0.description}).joined(separator: ",")
         }
         
-        let resource = Resource<SOAQueryResult>(method: .get, path: entity, data: params) { json in
+        let resource = Resource<EntityType>(method: .get, path: entity.lowercased(), data: params) { json in
             
             return nil
         }

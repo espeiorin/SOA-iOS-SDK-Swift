@@ -1,15 +1,14 @@
 //
-//  SOA_iOS_SDKTests.swift
-//  SOA iOS SDKTests
+//  SOAObjectTests.swift
+//  SOA iOS SDK
 //
-//  Created by Andre Gustavo on 10/01/17.
+//  Created by Andre Espeiorin on 11/01/2017.
 //  Copyright © 2017 Andre Gustavo. All rights reserved.
 //
 
 import XCTest
-@testable import SOA_SDK
 
-class SOA_iOS_SDKTests: XCTestCase {
+class SOAObjectTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

@@ -8,10 +8,14 @@
 
 import Foundation
 
-public struct SOAJoin: CustomStringConvertible {
+public struct SOAJoin: CustomStringConvertible, Equatable {
     let field: String
     let filter: SOAFilter
     public var description: String {
         return "\(field):\(filter)"
     }
+}
+
+public func ==(lhs: SOAJoin, rhs: SOAJoin) -> Bool {
+    return lhs.field == rhs.field && lhs.filter == rhs.filter
 }
