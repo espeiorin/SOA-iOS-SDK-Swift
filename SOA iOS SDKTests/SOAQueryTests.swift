@@ -10,12 +10,16 @@ import XCTest
 import SOA
 
 fileprivate struct ObjectMock: JSONConvertible {
-    init(dictionary: [String : Any]) {
-        
+    
+    let id: Int
+    
+    init?(dictionary: [String : Any]) {
+        guard let id = dictionary["id"] as? Int else { return nil }
+        self.id = id
     }
     
     fileprivate func dictionary() -> [String : Any] {
-        return [:]
+        return ["id":id]
     }
 }
 
@@ -30,9 +34,20 @@ class SOAQueryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let restClient = RestMock(mockData: mockData)
+        var restClient = RestMock(mockData: mockData)
+        restClient.completionData[.get] = mockedResponse()
         SOAManager.shared.restClient = restClient
         SOAManager.shared.restURL = baseURL
+    }
+    
+    private func mockedResponse() -> RESTResponse {
+        let data = "[{\"id\":29}, {\"id\":30}]".data(using: .utf8)
+        return RESTResponse(httpCode: 200, result: data, error: nil)
+    }
+    
+    private func mockedFailedResponse() -> RESTResponse {
+        let error = NSError(domain: "me.andregustavo.soa", code: 404, userInfo: [NSLocalizedDescriptionKey:"Not found"])
+        return RESTResponse(httpCode: 404, result: nil, error: error)
     }
     
     override func tearDown() {
@@ -41,10 +56,21 @@ class SOAQueryTests: XCTestCase {
     }
     
     func testSimpleQuery() {
-        let query = SOAQuery<ObjectMock>(entity: "Entity")
+        let query = SOAQuery<ObjectMock>(entity: entity)
+        
+        let queryExpectation = expectation(description: "QUERY CALL")
 
         query.execute { result, error in
-            
+            XCTAssertNotNil(result?.records)
+            XCTAssertEqual(result?.records.count, 2)
+            let firstItem = result?.records.first
+            XCTAssertNotNil(firstItem)
+            XCTAssertEqual(firstItem?.id, 29)
+            let secondItem = result?.records[1]
+            XCTAssertNotNil(secondItem)
+            XCTAssertEqual(secondItem?.id, 30)
+            XCTAssertNil(error)
+            queryExpectation.fulfill()
         }
         
         XCTAssertEqual(mockData.requestMethod, HTTPMethod.get)
@@ -55,17 +81,67 @@ class SOAQueryTests: XCTestCase {
         
         XCTAssertNotNil(mockData.requestHeaders)
         XCTAssert(mockData.requestHeaders?.count == 0)
-    }
-    
-    func testQueryWithFilter() {
         
-    }
-    
-    func testQueryWithJoin() {
-        
+        waitForExpectations(timeout: 2) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func testCompleteQuery() {
+        var query = SOAQuery<ObjectMock>(entity: entity, fields: ["id", "children"], offset: 10, limit: 20)
+        query.append(filter: SOAFilter(condition: .greaterOrEqual, field: "id", value: "10"))
+        query.append(filter: SOAFilter(condition: .lowerOrEqual, field: "id", value: "100"))
         
+        let joinFilter = SOAFilter(condition: .equal, field: "id", value: "30")
+        query.append(join: SOAJoin(field: "children", filter: joinFilter))
+        
+        let queryExpectation = expectation(description: "Query With Filter")
+        
+        query.execute { result, error in
+            XCTAssertNotNil(result?.records)
+            XCTAssertEqual(result?.records.count, 2)
+            let firstItem = result?.records.first
+            XCTAssertNotNil(firstItem)
+            XCTAssertEqual(firstItem?.id, 29)
+            let secondItem = result?.records[1]
+            XCTAssertNotNil(secondItem)
+            XCTAssertEqual(secondItem?.id, 30)
+            XCTAssertNil(error)
+            queryExpectation.fulfill()
+        }
+        
+        XCTAssertEqual(mockData.requestMethod, HTTPMethod.get)
+        XCTAssertEqual(mockData.requestURL, targetURL)
+        
+        XCTAssertNotNil(mockData.requestParams)
+        XCTAssertEqual(mockData.requestParams?.count, 5)
+        
+        let fields = mockData.requestParams?["fields"] as? String
+        XCTAssertNotNil(fields)
+        XCTAssertEqual(fields, "id,children")
+        
+        let offset = mockData.requestParams?["offset"] as? Int
+        XCTAssertNotNil(offset)
+        XCTAssertEqual(offset, 10)
+        
+        let limit = mockData.requestParams?["limit"] as? Int
+        XCTAssertNotNil(limit)
+        XCTAssertEqual(limit, 20)
+        
+        let filters = mockData.requestParams?["filters"] as? String
+        XCTAssertNotNil(filters)
+        XCTAssertEqual(filters, "id:gte:10,id:lte:100")
+        
+        let join = mockData.requestParams?["join"] as? String
+        XCTAssertNotNil(join)
+        XCTAssertEqual(join, "children:id:eq:30")
+        
+        waitForExpectations(timeout: 2) { error in
+            if let error = error {
+                print(error)
+            }
+        }
     }
 }

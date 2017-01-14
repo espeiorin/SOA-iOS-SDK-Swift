@@ -81,10 +81,12 @@ public struct SOAQuery<T>: SOAEntityProtocol where T:JSONConvertible {
             params["join"] = joins.map({$0.description}).joined(separator: ",")
         }
         
-        let resource = Resource<EntityType>(method: .get, path: entity.lowercased(), data: params) { json in
-            
-            return nil
-        }
+        let resource = Resource<EntityType>(method: .get, path: entity.lowercased(), data: params, JSONHandle: { json in
+            guard let json = json as? [[String:Any]] else {
+                return nil
+            }
+            return SOAQueryResult<T>(records: json.flatMap({T(dictionary: $0)}))
+        })
         
         load(resource: resource, completion: completion)
     }
