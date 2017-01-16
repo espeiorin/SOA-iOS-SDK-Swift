@@ -8,56 +8,97 @@
 
 import Foundation
 
-open class SOAObject {
-    let entity: String
-    var id: Int?
-    var values = [String:Any]()
+public protocol SOAObject: JSONConvertible, SOARequestProtocol {
+    typealias EntityType = Self
     
-    public required init(entity: String) {
-        self.entity = entity
+    var entity: String { get set }
+    var id: Int? { get set }
+    var valueDictionary: [String:Any] { get set }
+    
+    init(entity: String)
+    init(entity: String, id: Int)
+}
+
+public extension SOAObject {
+    public static func retrieve(entity: String, id: Int, completion: @escaping (Self?, Error?) -> Void) {
+        var object = Self(entity: entity, id: id)
+        object.fetch(completion: completion)
     }
     
-    public convenience init(entity: String, id: Int) {
-        self.init(entity: entity)
-        self.id = id
+    public static func save(entity: String, id: Int?, data: [String:Any], completion: @escaping (Self?, Error?) -> Void) {
+        var object = Self(entity: entity)
+        object.id = id
+        object.setValues(dictionary: data)
+        object.save(completion: completion)
     }
     
-    public class func retrieve(entity: String, id: Int, completion: @escaping (SOAObject?, Error?) -> Void) {
-        
+    public static func delete(entity: String, id: Int, completion: @escaping (Error?) -> Void) {
+        var object = Self(entity: entity, id: id)
+        object.delete(completion: completion)
     }
     
-    public class func save(entity: String, params: [String:Any], completion: @escaping (SOAObject?, Error?) -> Void) {
-        
-    }
-    
-    public class func delete(entity: String, id: Int, completion: @escaping (Error?) -> Void) {
-        
-    }
-    
-    public func fetch(completion: @escaping (SOAObject?, Error?) -> Void) {
-        guard let id = id else {
+    public mutating func fetch(completion: @escaping (Self?, Error?) -> Void) {
+        guard let _ = id else {
             let error = NSError(domain: "me.andregustavo.soa", code: 0, userInfo: [NSLocalizedDescriptionKey:"Cannot fetch an entity without entity id"])
             completion(nil, error)
             return
         }
-        
-        
+        load(resource: fetchResource, completion: completion)
     }
     
-    public func save(completion: @escaping (SOAObject?, Error?) -> Void) {
-        
+    public mutating func save(completion: @escaping (Self?, Error?) -> Void) {
+        let resource = (id == nil) ? newResource : updateResource
+        load(resource: resource, completion: completion)
     }
     
-    public func delete(completion: @escaping (Error?) -> Void) {
-        guard let id = id else {
+    public mutating func delete(completion: @escaping (Error?) -> Void) {
+        guard let _ = id else {
             let error = NSError(domain: "me.andregustavo.soa", code: 0, userInfo: [NSLocalizedDescriptionKey:"Cannot delete an entity without entity id"])
             completion(error)
             return
         }
         
+        load(resource: deleteResource) { result, error in
+            completion(error)
+        }
     }
     
-    public func setValues(from dictionary: [String:Any]) {
-        
+    public mutating func setValues(dictionary: [String : Any]) {
+        dictionary.forEach({self.valueDictionary[$0.key] = $0.value})
+    }
+}
+
+fileprivate extension SOAObject {
+    var newResource: Resource<Self> {
+        return Resource<Self>(method: .post, path: self.entity.lowercased(), data: valueDictionary, JSONHandle: { json in
+            guard let json = json as? [String:Any] else { return nil }
+            var object = self
+            object.setValues(dictionary: json)
+            return object
+        })
+    }
+    
+    var updateResource: Resource<Self> {
+        return Resource<Self>(method: .put, path: "\(self.entity.lowercased())/\(id ?? 0)", data: valueDictionary, JSONHandle: { json in
+            guard let json = json as? [String:Any] else { return nil }
+            var object = self
+            object.setValues(dictionary: json)
+            return object
+        })
+    }
+    
+    var fetchResource: Resource<Self> {
+        return Resource<Self>(method: .get, path: "\(self.entity.lowercased())/\(id ?? 0)", data: nil, JSONHandle: { json in
+            guard let json = json as? [String:Any] else { return nil }
+            var object = self
+            object.setValues(dictionary: json)
+            return object
+        })
+    }
+    
+    var deleteResource: Resource<Self> {
+        return Resource<Self>(method: .delete, path: "\(self.entity.lowercased())/\(id ?? 0)", data: nil, JSONHandle: { json in
+            return nil
+        })
     }
 }

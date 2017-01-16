@@ -13,13 +13,13 @@ public enum SOARequestType {
     case rpc
 }
 
-public protocol SOAEntityProtocol {
+public protocol SOARequestProtocol {
     associatedtype EntityType
     
     var requestType: SOARequestType { get }
 }
 
-public extension SOAEntityProtocol {
+public extension SOARequestProtocol {
     public func load<EntityType>(resource: Resource<EntityType>, completion: @escaping (EntityType?, Error?) -> Void) {
         let manager = SOAManager.shared
         

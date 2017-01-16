@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SOAQuery<T>: SOAEntityProtocol where T:JSONConvertible {
+public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
     public typealias EntityType = SOAQueryResult<T>
     
     public let requestType: SOARequestType = .rest
@@ -85,9 +85,16 @@ public struct SOAQuery<T>: SOAEntityProtocol where T:JSONConvertible {
             guard let json = json as? [[String:Any]] else {
                 return nil
             }
-            return SOAQueryResult<T>(records: json.flatMap({T(dictionary: $0)}))
+            
+            return SOAQueryResult<T>(records: json.flatMap(self.jsonParse))
         })
         
         load(resource: resource, completion: completion)
+    }
+    
+    fileprivate func jsonParse(input: [String:Any]) -> T? {
+        var item = T(dictionary: input)
+        item?.entity = self.entity
+        return item
     }
 }

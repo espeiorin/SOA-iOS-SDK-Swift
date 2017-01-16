@@ -11,4 +11,5 @@ import Foundation
 public protocol JSONConvertible {
     init?(dictionary: [String:Any])
     func dictionary() -> [String:Any]
+    mutating func setValues(dictionary: [String:Any])
 }

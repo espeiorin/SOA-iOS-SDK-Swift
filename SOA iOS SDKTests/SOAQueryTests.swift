@@ -7,21 +7,6 @@
 //
 
 import XCTest
-import SOA
-
-fileprivate struct ObjectMock: JSONConvertible {
-    
-    let id: Int
-    
-    init?(dictionary: [String : Any]) {
-        guard let id = dictionary["id"] as? Int else { return nil }
-        self.id = id
-    }
-    
-    fileprivate func dictionary() -> [String : Any] {
-        return ["id":id]
-    }
-}
 
 class SOAQueryTests: XCTestCase {
     

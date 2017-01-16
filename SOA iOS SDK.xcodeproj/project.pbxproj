@@ -14,7 +14,7 @@
 		6D0FB31D1E268DA000BD8597 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B165F1E25759D00305A9C /* Resource.swift */; };
 		6D0FB31E1E268DA000BD8597 /* RESTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A1F1E257B1500211649 /* RESTResponse.swift */; };
 		6D0FB31F1E268DA000BD8597 /* RESTClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16611E25762200305A9C /* RESTClientProtocol.swift */; };
-		6D0FB3201E268DA000BD8597 /* SOAEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16631E2576BB00305A9C /* SOAEntityProtocol.swift */; };
+		6D0FB3201E268DA000BD8597 /* SOARequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16631E2576BB00305A9C /* SOARequestProtocol.swift */; };
 		6D0FB3211E268DA000BD8597 /* SOAQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A2B1E2584D200211649 /* SOAQueryResult.swift */; };
 		6D0FB3221E268DA000BD8597 /* SOAQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A281E25844E00211649 /* SOAQuery.swift */; };
 		6D0FB3231E268DA000BD8597 /* SOAFilterCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A2F1E2587B400211649 /* SOAFilterCondition.swift */; };
@@ -27,7 +27,7 @@
 		6D0FB3301E268DA200BD8597 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B165F1E25759D00305A9C /* Resource.swift */; };
 		6D0FB3311E268DA200BD8597 /* RESTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A1F1E257B1500211649 /* RESTResponse.swift */; };
 		6D0FB3321E268DA200BD8597 /* RESTClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16611E25762200305A9C /* RESTClientProtocol.swift */; };
-		6D0FB3331E268DA200BD8597 /* SOAEntityProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16631E2576BB00305A9C /* SOAEntityProtocol.swift */; };
+		6D0FB3331E268DA200BD8597 /* SOARequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6B16631E2576BB00305A9C /* SOARequestProtocol.swift */; };
 		6D0FB3341E268DA200BD8597 /* SOAQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A2B1E2584D200211649 /* SOAQueryResult.swift */; };
 		6D0FB3351E268DA200BD8597 /* SOAQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A281E25844E00211649 /* SOAQuery.swift */; };
 		6D0FB3361E268DA200BD8597 /* SOAFilterCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A2F1E2587B400211649 /* SOAFilterCondition.swift */; };
@@ -41,9 +41,11 @@
 		6D0FB3441E269EFA00BD8597 /* SOAObjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FB3431E269EFA00BD8597 /* SOAObjectTests.swift */; };
 		6D0FB3461E269F4C00BD8597 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FB3451E269F4C00BD8597 /* JSONConvertible.swift */; };
 		6D0FB3471E269FA200BD8597 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FB3451E269F4C00BD8597 /* JSONConvertible.swift */; };
-		6DB6C0281E27574C009387D1 /* RestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6C0251E27574C009387D1 /* RestMock.swift */; };
-		6DB6C0291E27574C009387D1 /* RestMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6C0261E27574C009387D1 /* RestMockData.swift */; };
-		6DB6C02A1E27574C009387D1 /* SOAManager+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB6C0271E27574C009387D1 /* SOAManager+Mock.swift */; };
+		6DA4A4B41E2CA05300527EE3 /* SOAObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0FB3391E268EE400BD8597 /* SOAObject.swift */; };
+		6DA4A4BD1E2CA67F00527EE3 /* SOAManager+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A4B81E2CA67F00527EE3 /* SOAManager+Mock.swift */; };
+		6DA4A4BE1E2CA67F00527EE3 /* ObjectMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A4BA1E2CA67F00527EE3 /* ObjectMock.swift */; };
+		6DA4A4BF1E2CA67F00527EE3 /* RestMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A4BB1E2CA67F00527EE3 /* RestMock.swift */; };
+		6DA4A4C01E2CA67F00527EE3 /* RestMockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA4A4BC1E2CA67F00527EE3 /* RestMockData.swift */; };
 		BC4E3A261E2582E400211649 /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A251E2582E400211649 /* DictionaryExtensionTests.swift */; };
 		BC6B16461E25756F00305A9C /* SOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B163C1E25756F00305A9C /* SOA.framework */; };
 		BC6B164D1E25756F00305A9C /* SOA iOS SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6B163F1E25756F00305A9C /* SOA iOS SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,9 +70,10 @@
 		6D0FB3411E269EEF00BD8597 /* SOAQueryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAQueryTests.swift; sourceTree = "<group>"; };
 		6D0FB3431E269EFA00BD8597 /* SOAObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAObjectTests.swift; sourceTree = "<group>"; };
 		6D0FB3451E269F4C00BD8597 /* JSONConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
-		6DB6C0251E27574C009387D1 /* RestMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMock.swift; sourceTree = "<group>"; };
-		6DB6C0261E27574C009387D1 /* RestMockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMockData.swift; sourceTree = "<group>"; };
-		6DB6C0271E27574C009387D1 /* SOAManager+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOAManager+Mock.swift"; sourceTree = "<group>"; };
+		6DA4A4B81E2CA67F00527EE3 /* SOAManager+Mock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SOAManager+Mock.swift"; sourceTree = "<group>"; };
+		6DA4A4BA1E2CA67F00527EE3 /* ObjectMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectMock.swift; sourceTree = "<group>"; };
+		6DA4A4BB1E2CA67F00527EE3 /* RestMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMock.swift; sourceTree = "<group>"; };
+		6DA4A4BC1E2CA67F00527EE3 /* RestMockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestMockData.swift; sourceTree = "<group>"; };
 		BC4E3A1F1E257B1500211649 /* RESTResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTResponse.swift; sourceTree = "<group>"; };
 		BC4E3A211E2582B500211649 /* Dictionary+Merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Merge.swift"; sourceTree = "<group>"; };
 		BC4E3A251E2582E400211649 /* DictionaryExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryExtensionTests.swift; sourceTree = "<group>"; };
@@ -86,7 +89,7 @@
 		BC6B164C1E25756F00305A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6B165F1E25759D00305A9C /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		BC6B16611E25762200305A9C /* RESTClientProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTClientProtocol.swift; sourceTree = "<group>"; };
-		BC6B16631E2576BB00305A9C /* SOAEntityProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAEntityProtocol.swift; sourceTree = "<group>"; };
+		BC6B16631E2576BB00305A9C /* SOARequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOARequestProtocol.swift; sourceTree = "<group>"; };
 		BC6B16651E2578D600305A9C /* SOAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAManager.swift; sourceTree = "<group>"; };
 		BC6B16671E2579AA00305A9C /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,6 +113,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6DA4A4B71E2CA67F00527EE3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6DA4A4B81E2CA67F00527EE3 /* SOAManager+Mock.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6DA4A4B91E2CA67F00527EE3 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				6DA4A4BA1E2CA67F00527EE3 /* ObjectMock.swift */,
+				6DA4A4BB1E2CA67F00527EE3 /* RestMock.swift */,
+				6DA4A4BC1E2CA67F00527EE3 /* RestMockData.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		BC6B16321E25756F00305A9C = {
 			isa = PBXGroup;
 			children = (
@@ -140,7 +161,7 @@
 				BC6B165F1E25759D00305A9C /* Resource.swift */,
 				BC4E3A1F1E257B1500211649 /* RESTResponse.swift */,
 				BC6B16611E25762200305A9C /* RESTClientProtocol.swift */,
-				BC6B16631E2576BB00305A9C /* SOAEntityProtocol.swift */,
+				BC6B16631E2576BB00305A9C /* SOARequestProtocol.swift */,
 				6D0FB3451E269F4C00BD8597 /* JSONConvertible.swift */,
 				BC4E3A2B1E2584D200211649 /* SOAQueryResult.swift */,
 				BC4E3A281E25844E00211649 /* SOAQuery.swift */,
@@ -155,9 +176,8 @@
 		BC6B16491E25756F00305A9C /* SOA iOS SDKTests */ = {
 			isa = PBXGroup;
 			children = (
-				6DB6C0251E27574C009387D1 /* RestMock.swift */,
-				6DB6C0261E27574C009387D1 /* RestMockData.swift */,
-				6DB6C0271E27574C009387D1 /* SOAManager+Mock.swift */,
+				6DA4A4B71E2CA67F00527EE3 /* Extensions */,
+				6DA4A4B91E2CA67F00527EE3 /* Mocks */,
 				BC4E3A251E2582E400211649 /* DictionaryExtensionTests.swift */,
 				6D0FB33F1E269D9500BD8597 /* ArrayExtensionTests.swift */,
 				6D0FB33D1E269C2000BD8597 /* SOAFilterTests.swift */,
@@ -288,7 +308,7 @@
 				6D0FB3221E268DA000BD8597 /* SOAQuery.swift in Sources */,
 				6D0FB31E1E268DA000BD8597 /* RESTResponse.swift in Sources */,
 				6D0FB31A1E268DA000BD8597 /* Array+Remove.swift in Sources */,
-				6D0FB3201E268DA000BD8597 /* SOAEntityProtocol.swift in Sources */,
+				6D0FB3201E268DA000BD8597 /* SOARequestProtocol.swift in Sources */,
 				6D0FB3251E268DA000BD8597 /* SOAJoin.swift in Sources */,
 				6D0FB3241E268DA000BD8597 /* SOAFilter.swift in Sources */,
 				6D0FB31D1E268DA000BD8597 /* Resource.swift in Sources */,
@@ -302,27 +322,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DB6C0281E27574C009387D1 /* RestMock.swift in Sources */,
 				6D0FB33E1E269C2000BD8597 /* SOAFilterTests.swift in Sources */,
 				6D0FB3381E268DA200BD8597 /* SOAJoin.swift in Sources */,
 				6D0FB32C1E268DA200BD8597 /* Dictionary+Merge.swift in Sources */,
 				6D0FB3341E268DA200BD8597 /* SOAQueryResult.swift in Sources */,
-				6DB6C0291E27574C009387D1 /* RestMockData.swift in Sources */,
 				6D0FB33C1E269B7C00BD8597 /* SOAJoinTests.swift in Sources */,
+				6DA4A4BE1E2CA67F00527EE3 /* ObjectMock.swift in Sources */,
 				6D0FB3351E268DA200BD8597 /* SOAQuery.swift in Sources */,
 				6D0FB32D1E268DA200BD8597 /* Array+Remove.swift in Sources */,
 				6D0FB3311E268DA200BD8597 /* RESTResponse.swift in Sources */,
+				6DA4A4BF1E2CA67F00527EE3 /* RestMock.swift in Sources */,
 				6D0FB3321E268DA200BD8597 /* RESTClientProtocol.swift in Sources */,
 				6D0FB32F1E268DA200BD8597 /* SOAManager.swift in Sources */,
+				6DA4A4B41E2CA05300527EE3 /* SOAObject.swift in Sources */,
 				6D0FB3441E269EFA00BD8597 /* SOAObjectTests.swift in Sources */,
-				6DB6C02A1E27574C009387D1 /* SOAManager+Mock.swift in Sources */,
-				6D0FB3331E268DA200BD8597 /* SOAEntityProtocol.swift in Sources */,
+				6D0FB3331E268DA200BD8597 /* SOARequestProtocol.swift in Sources */,
 				6D0FB3371E268DA200BD8597 /* SOAFilter.swift in Sources */,
 				6D0FB3421E269EEF00BD8597 /* SOAQueryTests.swift in Sources */,
+				6DA4A4C01E2CA67F00527EE3 /* RestMockData.swift in Sources */,
 				6D0FB3361E268DA200BD8597 /* SOAFilterCondition.swift in Sources */,
 				6D0FB32E1E268DA200BD8597 /* HTTPMethod.swift in Sources */,
 				BC4E3A261E2582E400211649 /* DictionaryExtensionTests.swift in Sources */,
 				6D0FB3301E268DA200BD8597 /* Resource.swift in Sources */,
+				6DA4A4BD1E2CA67F00527EE3 /* SOAManager+Mock.swift in Sources */,
 				6D0FB3401E269D9500BD8597 /* ArrayExtensionTests.swift in Sources */,
 				6D0FB3471E269FA200BD8597 /* JSONConvertible.swift in Sources */,
 			);
