@@ -13,7 +13,6 @@ public protocol SOAObject: JSONConvertible, SOARequestProtocol {
     
     var entity: String { get set }
     var id: Int? { get set }
-    var valueDictionary: [String:Any] { get set }
     
     init(entity: String)
     init(entity: String, id: Int)
@@ -62,10 +61,6 @@ public extension SOAObject {
             completion(error)
         }
     }
-    
-    public mutating func setValues(dictionary: [String : Any]) {
-        dictionary.forEach({self.valueDictionary[$0.key] = $0.value})
-    }
 }
 
 fileprivate extension SOAObject {
@@ -73,6 +68,9 @@ fileprivate extension SOAObject {
         return Resource<Self>(method: .post, path: self.entity.lowercased(), data: valueDictionary, JSONHandle: { json in
             guard let json = json as? [String:Any] else { return nil }
             var object = self
+            if let id = json["id"] as? Int {
+                object.id = id
+            }
             object.setValues(dictionary: json)
             return object
         })

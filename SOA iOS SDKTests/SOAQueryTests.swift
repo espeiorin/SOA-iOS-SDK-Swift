@@ -16,10 +16,11 @@ class SOAQueryTests: XCTestCase {
         return self.baseURL?.appendingPathComponent(self.entity.lowercased())
     }()
     let mockData = RestMockData()
+    var restClient: RestMock!
     
     override func setUp() {
         super.setUp()
-        var restClient = RestMock(mockData: mockData)
+        restClient = RestMock(mockData: mockData)
         restClient.completionData[.get] = mockedResponse()
         SOAManager.shared.restClient = restClient
         SOAManager.shared.restURL = baseURL
@@ -27,6 +28,11 @@ class SOAQueryTests: XCTestCase {
     
     private func mockedResponse() -> RESTResponse {
         let data = "[{\"id\":29}, {\"id\":30}]".data(using: .utf8)
+        return RESTResponse(httpCode: 200, result: data, error: nil)
+    }
+    
+    private func mockedEmptyResponse() -> RESTResponse {
+        let data = Data(bytes: [0x00])
         return RESTResponse(httpCode: 200, result: data, error: nil)
     }
     
@@ -122,6 +128,47 @@ class SOAQueryTests: XCTestCase {
         let join = mockData.requestParams?["join"] as? String
         XCTAssertNotNil(join)
         XCTAssertEqual(join, "children:id:eq:30")
+        
+        waitForExpectations(timeout: 2) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
+    func testEmptyQuery() {
+        
+        restClient.completionData[.get] = mockedEmptyResponse()
+        SOAManager.shared.restClient = restClient
+        
+        let query = SOAQuery<ObjectMock>(entity: entity)
+        let queryExpectation = expectation(description: "Empty Query")
+        
+        query.execute { result, error in
+            XCTAssertNil(result)
+            XCTAssertNil(error)
+            queryExpectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: 2) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
+    
+    func testFailedQuery() {
+        restClient.completionData[.get] = mockedFailedResponse()
+        SOAManager.shared.restClient = restClient
+        
+        let query = SOAQuery<ObjectMock>(entity: entity)
+        let queryExpectation = expectation(description: "Empty Query")
+        
+        query.execute { result, error in
+            XCTAssertNil(result)
+            XCTAssertNotNil(error)
+            queryExpectation.fulfill()
+        }
         
         waitForExpectations(timeout: 2) { error in
             if let error = error {
