@@ -12,7 +12,7 @@ public class SOAManager {
     
     public static let shared: SOAManager = SOAManager()
     
-    public var restClient: RESTClientProtocol?
+    public var restClient: NetworkClient?
     public var restURL: URL?
     public var rpcURL: URL?
     public var sharedHeaders = [String:Any]()

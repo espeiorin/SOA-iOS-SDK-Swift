@@ -1,5 +1,5 @@
 //
-//  SOARequestProtocol.swift
+//  RequestProtocol.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,18 +8,13 @@
 
 import Foundation
 
-public enum SOARequestType {
-    case rest
-    case rpc
-}
-
-public protocol SOARequestProtocol {
+public protocol Loadable {
     associatedtype EntityType
     
-    var requestType: SOARequestType { get }
+    var requestType: RequestType { get }
 }
 
-public extension SOARequestProtocol {
+public extension Loadable {
     public func load<EntityType>(resource: Resource<EntityType>, completion: @escaping (EntityType?, Error?) -> Void) {
         let manager = SOAManager.shared
         
@@ -40,26 +35,36 @@ public extension SOARequestProtocol {
             headers.merge(with: methodHeaders)
         }
         
-        let restCompletion: RESTClientCompletion = { response in
+        let restCompletion: NetworkCompletion = { response in
             guard let resultData = response.result else {
-                return completion(nil, response.error)
+                DispatchQueue.main.async {
+                    completion(nil, response.error)
+                }
+                return
             }
-            completion(resource.handle(resultData), response.error)
+            let result = resource.handle(resultData)
+            DispatchQueue.main.async {
+                completion(result, response.error)
+            }
         }
         
         switch resource.method {
         case .get:
             client.get(url: resourceURL, params: resource.data, headers: headers, completion: restCompletion)
-            break
+            return
         case .post:
+            if let files = resource.files {
+                client.post(url: resourceURL, params: resource.data, files: files, headers: headers, completion: restCompletion)
+                return
+            }
             client.post(url: resourceURL, params: resource.data, headers: headers, completion: restCompletion)
-            break
+            return
         case .put:
             client.put(url: resourceURL, params: resource.data, headers: headers, completion: restCompletion)
-            break
+            return
         case .delete:
             client.delete(url: resourceURL, params: resource.data, headers: headers, completion: restCompletion)
-            break
+            return
         }
     }
 }

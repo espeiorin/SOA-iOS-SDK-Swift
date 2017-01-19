@@ -1,5 +1,5 @@
 //
-//  SOAFilterCondition.swift
+//  FilterCondition.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SOAFilterCondition: String {
+public enum FilterCondition: String {
     case equal = "eq"
     case like = "like"
     case lowerThan = "lt"

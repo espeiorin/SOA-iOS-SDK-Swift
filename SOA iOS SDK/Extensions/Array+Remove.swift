@@ -14,4 +14,10 @@ extension Array where Element: Equatable {
             remove(at: index)
         }
     }
+    
+    func removing(_ object: Element) -> [Element] {
+        var copy = self
+        copy.remove(object)
+        return copy
+    }
 }

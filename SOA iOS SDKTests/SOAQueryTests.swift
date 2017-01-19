@@ -26,19 +26,19 @@ class SOAQueryTests: XCTestCase {
         SOAManager.shared.restURL = baseURL
     }
     
-    private func mockedResponse() -> RESTResponse {
+    private func mockedResponse() -> NetworkResponse {
         let data = "[{\"id\":29}, {\"id\":30}]".data(using: .utf8)
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    private func mockedEmptyResponse() -> RESTResponse {
+    private func mockedEmptyResponse() -> NetworkResponse {
         let data = Data(bytes: [0x00])
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    private func mockedFailedResponse() -> RESTResponse {
+    private func mockedFailedResponse() -> NetworkResponse {
         let error = NSError(domain: "me.andregustavo.soa", code: 404, userInfo: [NSLocalizedDescriptionKey:"Not found"])
-        return RESTResponse(httpCode: 404, result: nil, error: error)
+        return NetworkResponse(httpCode: 404, result: nil, error: error)
     }
     
     override func tearDown() {
@@ -47,17 +47,17 @@ class SOAQueryTests: XCTestCase {
     }
     
     func testSimpleQuery() {
-        let query = SOAQuery<ObjectMock>(entity: entity)
+        let query = Query<ObjectMock>(entity: entity)
         
         let queryExpectation = expectation(description: "QUERY CALL")
 
         query.execute { result, error in
-            XCTAssertNotNil(result?.records)
-            XCTAssertEqual(result?.records.count, 2)
-            let firstItem = result?.records.first
+            XCTAssertNotNil(result)
+            XCTAssertEqual(result?.count, 2)
+            let firstItem = result?.first
             XCTAssertNotNil(firstItem)
             XCTAssertEqual(firstItem?.id, 29)
-            let secondItem = result?.records[1]
+            let secondItem = result?[1]
             XCTAssertNotNil(secondItem)
             XCTAssertEqual(secondItem?.id, 30)
             XCTAssertNil(error)
@@ -81,22 +81,22 @@ class SOAQueryTests: XCTestCase {
     }
     
     func testCompleteQuery() {
-        var query = SOAQuery<ObjectMock>(entity: entity, fields: ["id", "children"], offset: 10, limit: 20)
-        query.append(filter: SOAFilter(condition: .greaterOrEqual, field: "id", value: "10"))
-        query.append(filter: SOAFilter(condition: .lowerOrEqual, field: "id", value: "100"))
+        var query = Query<ObjectMock>(entity: entity, fields: ["id", "children"], offset: 10, limit: 20)
+        query.append(filter: Filter(condition: .greaterOrEqual, field: "id", value: "10"))
+        query.append(filter: Filter(condition: .lowerOrEqual, field: "id", value: "100"))
         
-        let joinFilter = SOAFilter(condition: .equal, field: "id", value: "30")
-        query.append(join: SOAJoin(field: "children", filter: joinFilter))
+        let joinFilter = Filter(condition: .equal, field: "id", value: "30")
+        query.append(join: Join(field: "children", filter: joinFilter))
         
         let queryExpectation = expectation(description: "Query With Filter")
         
         query.execute { result, error in
-            XCTAssertNotNil(result?.records)
-            XCTAssertEqual(result?.records.count, 2)
-            let firstItem = result?.records.first
+            XCTAssertNotNil(result)
+            XCTAssertEqual(result?.count, 2)
+            let firstItem = result?.first
             XCTAssertNotNil(firstItem)
             XCTAssertEqual(firstItem?.id, 29)
-            let secondItem = result?.records[1]
+            let secondItem = result?[1]
             XCTAssertNotNil(secondItem)
             XCTAssertEqual(secondItem?.id, 30)
             XCTAssertNil(error)
@@ -141,7 +141,7 @@ class SOAQueryTests: XCTestCase {
         restClient.completionData[.get] = mockedEmptyResponse()
         SOAManager.shared.restClient = restClient
         
-        let query = SOAQuery<ObjectMock>(entity: entity)
+        let query = Query<ObjectMock>(entity: entity)
         let queryExpectation = expectation(description: "Empty Query")
         
         query.execute { result, error in
@@ -161,7 +161,7 @@ class SOAQueryTests: XCTestCase {
         restClient.completionData[.get] = mockedFailedResponse()
         SOAManager.shared.restClient = restClient
         
-        let query = SOAQuery<ObjectMock>(entity: entity)
+        let query = Query<ObjectMock>(entity: entity)
         let queryExpectation = expectation(description: "Empty Query")
         
         query.execute { result, error in

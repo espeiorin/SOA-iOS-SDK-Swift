@@ -1,5 +1,5 @@
 //
-//  SOAQuery.swift
+//  Query.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
-    public typealias EntityType = SOAQueryResult<T>
+public struct Query<T: RemoteObject>: Loadable {
+    public typealias EntityType = [T]
     
-    public let requestType: SOARequestType = .rest
+    public let requestType: RequestType = .rest
     
     public let entity: String
     public var fields: [String]?
@@ -19,8 +19,8 @@ public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
     public var offset: Int?
     public var limit: Int?
     
-    private var filters = [SOAFilter]()
-    private var joins = [SOAJoin]()
+    private var filters = [Filter]()
+    private var joins = [Join]()
     
     init(entity: String) {
         self.entity = entity
@@ -33,11 +33,11 @@ public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
         self.limit = limit
     }
     
-    mutating func append(filter: SOAFilter) {
+    mutating func append(filter: Filter) {
         filters.append(filter)
     }
     
-    mutating func remove(filter: SOAFilter) {
+    mutating func remove(filter: Filter) {
         filters.remove(filter)
     }
     
@@ -45,11 +45,11 @@ public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
         filters.removeAll()
     }
     
-    mutating func append(join: SOAJoin) {
+    mutating func append(join: Join) {
         joins.append(join)
     }
     
-    mutating func remove(join: SOAJoin) {
+    mutating func remove(join: Join) {
         joins.remove(join)
     }
     
@@ -86,7 +86,7 @@ public struct SOAQuery<T>: SOARequestProtocol where T:SOAObject {
                 return nil
             }
             
-            return SOAQueryResult<T>(records: json.flatMap(self.jsonParse))
+            return json.flatMap(self.jsonParse)
         })
         
         load(resource: resource, completion: completion)

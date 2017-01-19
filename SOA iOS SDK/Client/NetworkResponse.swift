@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct RESTResponse {
+public struct NetworkResponse {
     let httpCode: Int
     var result: Data?
     var error: Error?

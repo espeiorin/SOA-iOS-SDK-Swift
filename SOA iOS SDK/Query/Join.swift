@@ -1,5 +1,5 @@
 //
-//  SOAJoin.swift
+//  Join.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct SOAJoin: CustomStringConvertible, Equatable {
-    let field: String
-    let filter: SOAFilter
+public struct Join: CustomStringConvertible, Equatable {
+    public let field: String
+    public let filter: Filter
     public var description: String {
         return "\(field):\(filter)"
     }
 }
 
-public func ==(lhs: SOAJoin, rhs: SOAJoin) -> Bool {
+public func ==(lhs: Join, rhs: Join) -> Bool {
     return lhs.field == rhs.field && lhs.filter == rhs.filter
 }

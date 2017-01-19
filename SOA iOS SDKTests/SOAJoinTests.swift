@@ -13,8 +13,8 @@ class SOAJoinTests: XCTestCase {
     
     
     func testJoin() {
-        let filter = SOAFilter(condition: .equal, field: "id", value: "10")
-        let join = SOAJoin(field: "test", filter: filter)
+        let filter = Filter(condition: .equal, field: "id", value: "10")
+        let join = Join(field: "test", filter: filter)
         XCTAssertEqual("\(join)", "test:id:eq:10")
     }
     

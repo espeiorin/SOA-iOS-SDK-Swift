@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ObjectMock: SOAObject {
-    public var requestType: SOARequestType = .rest
+struct ObjectMock: RemoteObject {
+    public var requestType: RequestType = .rest
 
     typealias EntityType = ObjectMock
     

@@ -1,5 +1,5 @@
 //
-//  SOAObject.swift
+//  Object.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Espeiorin on 11/01/2017.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol SOAObject: JSONConvertible, SOARequestProtocol {
+public protocol RemoteObject: JSONConvertible, Loadable {
     typealias EntityType = Self
     
     var entity: String { get set }
@@ -18,7 +18,7 @@ public protocol SOAObject: JSONConvertible, SOARequestProtocol {
     init(entity: String, id: Int)
 }
 
-public extension SOAObject {
+public extension RemoteObject {
     public static func retrieve(entity: String, id: Int, completion: @escaping (Self?, Error?) -> Void) {
         var object = Self(entity: entity, id: id)
         object.fetch(completion: completion)
@@ -63,7 +63,7 @@ public extension SOAObject {
     }
 }
 
-fileprivate extension SOAObject {
+fileprivate extension RemoteObject {
     var newResource: Resource<Self> {
         return Resource<Self>(method: .post, path: self.entity.lowercased(), data: valueDictionary, JSONHandle: { json in
             guard let json = json as? [String:Any] else { return nil }

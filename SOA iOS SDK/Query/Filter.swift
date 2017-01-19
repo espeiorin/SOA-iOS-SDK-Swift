@@ -1,5 +1,5 @@
 //
-//  SOAFilter.swift
+//  Filter.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public struct SOAFilter: CustomStringConvertible, Equatable {
-    public let condition: SOAFilterCondition
+public struct Filter: CustomStringConvertible, Equatable {
+    public let condition: FilterCondition
     public let field: String
     public let value: String
     
@@ -18,6 +18,6 @@ public struct SOAFilter: CustomStringConvertible, Equatable {
     }
 }
 
-public func ==(lhs: SOAFilter, rhs: SOAFilter) -> Bool {
+public func ==(lhs: Filter, rhs: Filter) -> Bool {
     return lhs.condition == rhs.condition && lhs.field == rhs.field && lhs.value == rhs.value
 }

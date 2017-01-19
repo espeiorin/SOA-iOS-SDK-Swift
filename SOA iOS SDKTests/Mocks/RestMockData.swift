@@ -12,5 +12,6 @@ class RestMockData {
     var requestMethod: HTTPMethod?
     var requestURL: URL?
     var requestParams: [String:Any]?
+    var requestFiles: [String:UploadFile]?
     var requestHeaders: [String:Any]?
 }

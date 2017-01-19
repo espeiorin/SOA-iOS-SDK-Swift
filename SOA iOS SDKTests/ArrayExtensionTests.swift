@@ -19,4 +19,11 @@ class ArrayExtensionTests: XCTestCase {
         XCTAssertNotNil(array.index(of: "c"))
     }
     
+    func testRemoving() {
+        let source = ["a", "b", "c"]
+        let array = source.removing("a")
+        XCTAssertNil(array.index(of: "a"))
+        XCTAssertNotNil(array.index(of: "b"))
+        XCTAssertNotNil(array.index(of: "c"))
+    }
 }

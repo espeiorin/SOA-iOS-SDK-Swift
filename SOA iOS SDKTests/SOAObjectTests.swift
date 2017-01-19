@@ -173,47 +173,47 @@ class SOAObjectTests: XCTestCase {
 }
 
 extension SOAObjectTests {
-    func mockedFetch() -> RESTResponse {
+    func mockedFetch() -> NetworkResponse {
         let data = "{\"id\":10}".data(using: .utf8)
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    func mockedFailedFetch() -> RESTResponse {
+    func mockedFailedFetch() -> NetworkResponse {
         let userInfo = [NSLocalizedDescriptionKey:"Not Found"]
         let error = NSError(domain: "me.andregustavo.soa", code: 404, userInfo: userInfo)
-        return RESTResponse(httpCode: 404, result: nil, error: error)
+        return NetworkResponse(httpCode: 404, result: nil, error: error)
     }
     
-    func mockedSave() -> RESTResponse {
+    func mockedSave() -> NetworkResponse {
         let data = "{\"id\":11}".data(using: .utf8)
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    func mockedFailedSave() -> RESTResponse {
+    func mockedFailedSave() -> NetworkResponse {
         let userInfo = [NSLocalizedDescriptionKey:"Unauthorized"]
         let error = NSError(domain: "me.andregustavo.soa", code: 401, userInfo: userInfo)
-        return RESTResponse(httpCode: 401, result: nil, error: error)
+        return NetworkResponse(httpCode: 401, result: nil, error: error)
     }
     
-    func mockedUpdate() -> RESTResponse {
+    func mockedUpdate() -> NetworkResponse {
         let data = "{\"id\":10}".data(using: .utf8)
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    func mockedFailedUpdate() -> RESTResponse {
+    func mockedFailedUpdate() -> NetworkResponse {
         let userInfo = [NSLocalizedDescriptionKey:"Not Found"]
         let error = NSError(domain: "me.andregustavo.soa", code: 404, userInfo: userInfo)
-        return RESTResponse(httpCode: 404, result: nil, error: error)
+        return NetworkResponse(httpCode: 404, result: nil, error: error)
     }
     
-    func mockedDelete() -> RESTResponse {
+    func mockedDelete() -> NetworkResponse {
         let data = "{\"success\":true}".data(using: .utf8)
-        return RESTResponse(httpCode: 200, result: data, error: nil)
+        return NetworkResponse(httpCode: 200, result: data, error: nil)
     }
     
-    func mockedFailedDelete() -> RESTResponse {
+    func mockedFailedDelete() -> NetworkResponse {
         let userInfo = [NSLocalizedDescriptionKey:"Not Found"]
         let error = NSError(domain: "me.andregustavo.soa", code: 404, userInfo: userInfo)
-        return RESTResponse(httpCode: 404, result: nil, error: error)
+        return NetworkResponse(httpCode: 404, result: nil, error: error)
     }
 }
