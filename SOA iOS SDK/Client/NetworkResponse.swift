@@ -9,7 +9,13 @@
 import Foundation
 
 public struct NetworkResponse {
-    let httpCode: Int
-    var result: Data?
-    var error: Error?
+    public let httpCode: Int
+    public var result: Data?
+    public var error: Error?
+    
+    public init(httpCode: Int, result: Data?, error: Error?) {
+        self.httpCode = httpCode
+        self.result = result
+        self.error = error
+    }
 }

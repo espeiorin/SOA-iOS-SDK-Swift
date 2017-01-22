@@ -24,7 +24,7 @@ public extension RemoteObject {
         object.fetch(completion: completion)
     }
     
-    public static func save(entity: String, id: Int?, data: [String:Any], completion: @escaping (Self?, Error?) -> Void) {
+    public static func save(entity: String, id: Int?, data: SOAParameters, completion: @escaping (Self?, Error?) -> Void) {
         var object = Self(entity: entity)
         object.id = id
         object.setValues(dictionary: data)
@@ -66,7 +66,7 @@ public extension RemoteObject {
 fileprivate extension RemoteObject {
     var newResource: Resource<Self> {
         return Resource<Self>(method: .post, path: self.entity.lowercased(), data: valueDictionary, JSONHandle: { json in
-            guard let json = json as? [String:Any] else { return nil }
+            guard let json = json as? JSONDictionary else { return nil }
             var object = self
             if let id = json["id"] as? Int {
                 object.id = id
@@ -78,7 +78,7 @@ fileprivate extension RemoteObject {
     
     var updateResource: Resource<Self> {
         return Resource<Self>(method: .put, path: "\(self.entity.lowercased())/\(id ?? 0)", data: valueDictionary, JSONHandle: { json in
-            guard let json = json as? [String:Any] else { return nil }
+            guard let json = json as? JSONDictionary else { return nil }
             var object = self
             object.setValues(dictionary: json)
             return object
@@ -87,7 +87,7 @@ fileprivate extension RemoteObject {
     
     var fetchResource: Resource<Self> {
         return Resource<Self>(method: .get, path: "\(self.entity.lowercased())/\(id ?? 0)", data: nil, JSONHandle: { json in
-            guard let json = json as? [String:Any] else { return nil }
+            guard let json = json as? JSONDictionary else { return nil }
             var object = self
             object.setValues(dictionary: json)
             return object

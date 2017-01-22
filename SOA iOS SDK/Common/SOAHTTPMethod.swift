@@ -1,5 +1,5 @@
 //
-//  HTTPMethod.swift
+//  SOAHTTPMethod.swift
 //  SOA iOS SDK
 //
 //  Created by Andre Gustavo on 10/01/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum HTTPMethod {
+public enum SOAHTTPMethod {
     case get
     case post
     case put

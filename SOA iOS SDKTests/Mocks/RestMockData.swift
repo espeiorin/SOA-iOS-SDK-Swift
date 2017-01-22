@@ -9,7 +9,7 @@
 import Foundation
 
 class RestMockData {
-    var requestMethod: HTTPMethod?
+    var requestMethod: SOAHTTPMethod?
     var requestURL: URL?
     var requestParams: [String:Any]?
     var requestFiles: [String:UploadFile]?

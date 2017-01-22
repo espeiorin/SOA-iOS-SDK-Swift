@@ -64,7 +64,7 @@ class SOAQueryTests: XCTestCase {
             queryExpectation.fulfill()
         }
         
-        XCTAssertEqual(mockData.requestMethod, HTTPMethod.get)
+        XCTAssertEqual(mockData.requestMethod, SOAHTTPMethod.get)
         XCTAssertEqual(mockData.requestURL, targetURL)
         
         XCTAssertNotNil(mockData.requestParams)
@@ -103,7 +103,7 @@ class SOAQueryTests: XCTestCase {
             queryExpectation.fulfill()
         }
         
-        XCTAssertEqual(mockData.requestMethod, HTTPMethod.get)
+        XCTAssertEqual(mockData.requestMethod, SOAHTTPMethod.get)
         XCTAssertEqual(mockData.requestURL, targetURL)
         
         XCTAssertNotNil(mockData.requestParams)

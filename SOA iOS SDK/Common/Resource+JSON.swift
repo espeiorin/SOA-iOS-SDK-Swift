@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Resource {
-    public init(method: HTTPMethod, path: String, data: [String:Any]?, JSONHandle: @escaping (Any) -> T?) {
+    public init(method: SOAHTTPMethod, path: String, data: SOAParameters?, JSONHandle: @escaping (Any) -> T?) {
         self.method = method
         self.path = path
         self.data = data
@@ -20,7 +20,7 @@ public extension Resource {
         self.files = nil
     }
     
-    public init(method: HTTPMethod, path: String, data: [String:Any]?, files: [String:UploadFile]?, JSONHandle: @escaping (Any) -> T?) {
+    public init(method: SOAHTTPMethod, path: String, data: SOAParameters?, files: SOAFiles?, JSONHandle: @escaping (Any) -> T?) {
         self.method = method
         self.path = path
         self.data = data

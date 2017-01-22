@@ -11,13 +11,13 @@ import Foundation
 struct RestMock: NetworkClient {
     
     var mockData: RestMockData
-    var completionData = [HTTPMethod:NetworkResponse]()
+    var completionData = [SOAHTTPMethod:NetworkResponse]()
     
     init(mockData: RestMockData) {
         self.mockData = mockData
     }
     
-    func get(url: URL, params: [String : Any]?, headers: [String : Any]?, completion: (NetworkResponse) -> Void) {
+    func get(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping (NetworkResponse) -> Void) {
         mockData.requestMethod = .get
         mockData.requestURL = url
         mockData.requestParams = params
@@ -31,7 +31,7 @@ struct RestMock: NetworkClient {
         completion(NetworkResponse(httpCode: 0, result: nil, error: nil))
     }
     
-    func post(url: URL, params: [String : Any]?, headers: [String : Any]?, completion: (NetworkResponse) -> Void) {
+    func post(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping (NetworkResponse) -> Void) {
         mockData.requestMethod = .post
         mockData.requestURL = url
         mockData.requestParams = params
@@ -45,7 +45,7 @@ struct RestMock: NetworkClient {
         completion(NetworkResponse(httpCode: 0, result: nil, error: nil))
     }
     
-    func post(url: URL, params: [String:Any]?, files: [String:UploadFile]?, headers: [String:Any?], completion: NetworkCompletion) {
+    func post(url: URL, params: SOAParameters?, files: SOAFiles?, headers: SOAHeaders?, completion: @escaping NetworkCompletion) {
         mockData.requestMethod = .post
         mockData.requestURL = url
         mockData.requestParams = params
@@ -59,7 +59,7 @@ struct RestMock: NetworkClient {
         completion(NetworkResponse(httpCode: 0, result: nil, error: nil))
     }
     
-    func put(url: URL, params: [String : Any]?, headers: [String : Any]?, completion: (NetworkResponse) -> Void) {
+    func put(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping (NetworkResponse) -> Void) {
         mockData.requestMethod = .put
         mockData.requestURL = url
         mockData.requestParams = params
@@ -73,7 +73,7 @@ struct RestMock: NetworkClient {
         completion(NetworkResponse(httpCode: 0, result: nil, error: nil))
     }
     
-    func delete(url: URL, params: [String : Any]?, headers: [String : Any]?, completion: (NetworkResponse) -> Void) {
+    func delete(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping (NetworkResponse) -> Void) {
         mockData.requestMethod = .delete
         mockData.requestURL = url
         mockData.requestParams = params

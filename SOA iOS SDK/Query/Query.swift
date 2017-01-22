@@ -82,7 +82,7 @@ public struct Query<T: RemoteObject>: Loadable {
         }
         
         let resource = Resource<EntityType>(method: .get, path: entity.lowercased(), data: params, JSONHandle: { json in
-            guard let json = json as? [[String:Any]] else {
+            guard let json = json as? [JSONDictionary] else {
                 return nil
             }
             

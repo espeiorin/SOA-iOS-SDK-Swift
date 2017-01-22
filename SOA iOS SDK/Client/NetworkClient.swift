@@ -8,12 +8,10 @@
 
 import Foundation
 
-public typealias NetworkCompletion = (NetworkResponse) -> Void
-
 public protocol NetworkClient {
-    func get(url: URL, params: [String:Any]?, headers: [String:Any]?, completion: NetworkCompletion)
-    func post(url: URL, params: [String:Any]?, headers: [String:Any]?, completion: NetworkCompletion)
-    func post(url: URL, params: [String:Any]?, files: [String:UploadFile]?, headers: [String:Any?], completion: NetworkCompletion)
-    func put(url: URL, params: [String:Any]?, headers: [String:Any]?, completion: NetworkCompletion)
-    func delete(url: URL, params: [String:Any]?, headers: [String:Any]?, completion: NetworkCompletion)
+    func get(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping NetworkCompletion)
+    func post(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping NetworkCompletion)
+    func post(url: URL, params: SOAParameters?, files: SOAFiles?, headers: SOAHeaders?, completion: @escaping NetworkCompletion)
+    func put(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping NetworkCompletion)
+    func delete(url: URL, params: SOAParameters?, headers: SOAHeaders?, completion: @escaping NetworkCompletion)
 }

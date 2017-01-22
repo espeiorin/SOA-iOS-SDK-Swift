@@ -9,13 +9,13 @@
 import Foundation
 
 public struct Resource<T> {
-    public let method: HTTPMethod
+    public let method: SOAHTTPMethod
     public let path: String
-    public var data: [String:Any]?
-    public var files: [String:UploadFile]?
+    public var data: SOAParameters?
+    public var files: SOAFiles?
     public let handle: (Data) -> T?
     
-    public init(method: HTTPMethod, path: String, data: [String:Any]?, files: [String:UploadFile]?, handle: @escaping (Data) -> T?) {
+    public init(method: SOAHTTPMethod, path: String, data: SOAParameters?, files: SOAFiles?, handle: @escaping (Data) -> T?) {
         self.method = method
         self.path = path
         self.data = data
@@ -23,7 +23,7 @@ public struct Resource<T> {
         self.handle = handle
     }
     
-    public init(method: HTTPMethod, path: String, data: [String:Any]?, handle: @escaping (Data) -> T?) {
+    public init(method: SOAHTTPMethod, path: String, data: SOAParameters?, handle: @escaping (Data) -> T?) {
         self.method = method
         self.path = path
         self.data = data

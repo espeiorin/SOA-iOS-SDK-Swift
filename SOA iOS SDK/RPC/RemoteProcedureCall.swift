@@ -21,9 +21,9 @@ public struct RemoteProcedureCall<T: JSONConvertible>: Loadable {
     
     public func execute(params: [String:Any]?, files: [String:UploadFile]?, completion: @escaping (EntityType?, Error?) -> Void) {
         
-        var parameters = params
-        if parameters != nil {
-            parameters?["parameters"] = parameters
+        var parameters = SOAParameters()
+        if params != nil {
+            parameters["parameters"] = params
         }
         
         let resource = Resource<EntityType>(method: .post, path: procedure, data: parameters, files: files, JSONHandle: { json in

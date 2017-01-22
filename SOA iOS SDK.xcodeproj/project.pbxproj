@@ -18,8 +18,8 @@
 		6D1C74FE1E30996000DBD67E /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74E91E30996000DBD67E /* NetworkClient.swift */; };
 		6D1C74FF1E30996000DBD67E /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EA1E30996000DBD67E /* NetworkResponse.swift */; };
 		6D1C75001E30996000DBD67E /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EA1E30996000DBD67E /* NetworkResponse.swift */; };
-		6D1C75011E30996000DBD67E /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EC1E30996000DBD67E /* HTTPMethod.swift */; };
-		6D1C75021E30996000DBD67E /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EC1E30996000DBD67E /* HTTPMethod.swift */; };
+		6D1C75011E30996000DBD67E /* SOAHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EC1E30996000DBD67E /* SOAHTTPMethod.swift */; };
+		6D1C75021E30996000DBD67E /* SOAHTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EC1E30996000DBD67E /* SOAHTTPMethod.swift */; };
 		6D1C75031E30996000DBD67E /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74ED1E30996000DBD67E /* JSONConvertible.swift */; };
 		6D1C75041E30996000DBD67E /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74ED1E30996000DBD67E /* JSONConvertible.swift */; };
 		6D1C75051E30996000DBD67E /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1C74EE1E30996000DBD67E /* Loadable.swift */; };
@@ -56,6 +56,8 @@
 		BC4E3A261E2582E400211649 /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A251E2582E400211649 /* DictionaryExtensionTests.swift */; };
 		BC6B16461E25756F00305A9C /* SOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B163C1E25756F00305A9C /* SOA.framework */; };
 		BC6B164D1E25756F00305A9C /* SOA iOS SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6B163F1E25756F00305A9C /* SOA iOS SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCB4A7E51E33CDF500B47EC0 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
+		BCC1A88F1E33F7A300A7771A /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +78,7 @@
 		6D0FB3431E269EFA00BD8597 /* SOAObjectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAObjectTests.swift; sourceTree = "<group>"; };
 		6D1C74E91E30996000DBD67E /* NetworkClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		6D1C74EA1E30996000DBD67E /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
-		6D1C74EC1E30996000DBD67E /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		6D1C74EC1E30996000DBD67E /* SOAHTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAHTTPMethod.swift; sourceTree = "<group>"; };
 		6D1C74ED1E30996000DBD67E /* JSONConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		6D1C74EE1E30996000DBD67E /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		6D1C74EF1E30996000DBD67E /* RequestType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		BC6B16451E25756F00305A9C /* SOA iOS SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SOA iOS SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B164C1E25756F00305A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6B16651E2578D600305A9C /* SOAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAManager.swift; sourceTree = "<group>"; };
+		BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				6D1C74ED1E30996000DBD67E /* JSONConvertible.swift */,
-				6D1C74EC1E30996000DBD67E /* HTTPMethod.swift */,
+				6D1C74EC1E30996000DBD67E /* SOAHTTPMethod.swift */,
 				6D1C74F01E30996000DBD67E /* Resource.swift */,
 				6D1C751E1E309BD200DBD67E /* Resource+JSON.swift */,
 				6D1C74EF1E30996000DBD67E /* RequestType.swift */,
@@ -225,6 +228,7 @@
 				BC6B163F1E25756F00305A9C /* SOA iOS SDK.h */,
 				BC6B16401E25756F00305A9C /* Info.plist */,
 				BC6B16651E2578D600305A9C /* SOAManager.swift */,
+				BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */,
 				6D1C74E81E30996000DBD67E /* Client */,
 				6D1C74EB1E30996000DBD67E /* Common */,
 				6D1C74F11E30996000DBD67E /* Extensions */,
@@ -363,13 +367,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6D1C75011E30996000DBD67E /* HTTPMethod.swift in Sources */,
+				6D1C75011E30996000DBD67E /* SOAHTTPMethod.swift in Sources */,
 				6D1C75111E30996000DBD67E /* Filter.swift in Sources */,
 				6D1C750B1E30996000DBD67E /* Array+Remove.swift in Sources */,
 				6D1C750D1E30996000DBD67E /* Dictionary+Merge.swift in Sources */,
 				6D1C75091E30996000DBD67E /* Resource.swift in Sources */,
 				6D1C75191E30996000DBD67E /* RemoteProcedureCall.swift in Sources */,
 				6D1C75131E30996000DBD67E /* FilterCondition.swift in Sources */,
+				BCB4A7E51E33CDF500B47EC0 /* TypeAliases.swift in Sources */,
 				6D1C751F1E309BD200DBD67E /* Resource+JSON.swift in Sources */,
 				6D1C750F1E30996000DBD67E /* RemoteObject.swift in Sources */,
 				6D1C74FD1E30996000DBD67E /* NetworkClient.swift in Sources */,
@@ -403,9 +408,10 @@
 				6D1C75041E30996000DBD67E /* JSONConvertible.swift in Sources */,
 				6D0FB3421E269EEF00BD8597 /* SOAQueryTests.swift in Sources */,
 				6D1C75061E30996000DBD67E /* Loadable.swift in Sources */,
-				6D1C75021E30996000DBD67E /* HTTPMethod.swift in Sources */,
+				6D1C75021E30996000DBD67E /* SOAHTTPMethod.swift in Sources */,
 				6D1C75001E30996000DBD67E /* NetworkResponse.swift in Sources */,
 				6D1C750A1E30996000DBD67E /* Resource.swift in Sources */,
+				BCC1A88F1E33F7A300A7771A /* TypeAliases.swift in Sources */,
 				6DA4A4C01E2CA67F00527EE3 /* RestMockData.swift in Sources */,
 				6D1C74FE1E30996000DBD67E /* NetworkClient.swift in Sources */,
 				BC4E3A261E2582E400211649 /* DictionaryExtensionTests.swift in Sources */,

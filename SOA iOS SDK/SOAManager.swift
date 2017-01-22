@@ -15,14 +15,14 @@ public class SOAManager {
     public var restClient: NetworkClient?
     public var restURL: URL?
     public var rpcURL: URL?
-    public var sharedHeaders = [String:Any]()
-    var headers = [HTTPMethod:[String:Any]]()
+    public var sharedHeaders = SOAHeaders()
+    var headers = [SOAHTTPMethod:SOAHeaders]()
     
-    public func set(headers: [String:Any], for method: HTTPMethod) {
+    public func set(headers: SOAHeaders, for method: SOAHTTPMethod) {
         self.headers[method] = headers
     }
     
-    public func headers(for method: HTTPMethod) -> [String:Any]? {
+    public func headers(for method: SOAHTTPMethod) -> SOAHeaders? {
         return headers[method]
     }
     
