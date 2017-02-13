@@ -16,6 +16,12 @@ public struct Filter: CustomStringConvertible, Equatable {
     public var description: String {
         return "\(field):\(condition.rawValue):\(value)"
     }
+    
+    public init(condition: FilterCondition, field: String, value: String) {
+        self.condition = condition
+        self.field = field
+        self.value = value
+    }
 }
 
 public func ==(lhs: Filter, rhs: Filter) -> Bool {

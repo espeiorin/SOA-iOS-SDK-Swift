@@ -15,6 +15,7 @@ public class SOAManager {
     public var restClient: NetworkClient?
     public var restURL: URL?
     public var rpcURL: URL?
+    public var imageURL: URL?
     public var sharedHeaders = SOAHeaders()
     var headers = [SOAHTTPMethod:SOAHeaders]()
     

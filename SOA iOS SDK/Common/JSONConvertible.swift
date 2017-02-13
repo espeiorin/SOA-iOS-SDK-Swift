@@ -12,11 +12,13 @@ public protocol JSONConvertible {
     var valueDictionary: JSONDictionary { get set }
     
     init?(dictionary: JSONDictionary)
-    func dictionary() -> JSONDictionary
-    mutating func setValues(dictionary: JSONDictionary)
 }
 
 public extension JSONConvertible {
+    public func dictionary() -> JSONDictionary {
+        return valueDictionary
+    }
+    
     public mutating func setValues(dictionary: JSONDictionary) {
         dictionary.forEach({self.valueDictionary[$0.key] = $0.value})
     }

@@ -11,29 +11,15 @@ import Foundation
 public protocol RemoteObject: JSONConvertible, Loadable {
     typealias EntityType = Self
     
-    var entity: String { get set }
     var id: Int? { get set }
     
-    init(entity: String)
-    init(entity: String, id: Int)
+    init()
 }
 
 public extension RemoteObject {
-    public static func retrieve(entity: String, id: Int, completion: @escaping (Self?, Error?) -> Void) {
-        var object = Self(entity: entity, id: id)
-        object.fetch(completion: completion)
-    }
     
-    public static func save(entity: String, id: Int?, data: SOAParameters, completion: @escaping (Self?, Error?) -> Void) {
-        var object = Self(entity: entity)
-        object.id = id
-        object.setValues(dictionary: data)
-        object.save(completion: completion)
-    }
-    
-    public static func delete(entity: String, id: Int, completion: @escaping (Error?) -> Void) {
-        var object = Self(entity: entity, id: id)
-        object.delete(completion: completion)
+    public var entity: String {
+        return String(describing: Self.self)
     }
     
     public mutating func fetch(completion: @escaping (Self?, Error?) -> Void) {

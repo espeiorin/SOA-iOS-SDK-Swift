@@ -56,6 +56,10 @@
 		BC4E3A261E2582E400211649 /* DictionaryExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4E3A251E2582E400211649 /* DictionaryExtensionTests.swift */; };
 		BC6B16461E25756F00305A9C /* SOA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC6B163C1E25756F00305A9C /* SOA.framework */; };
 		BC6B164D1E25756F00305A9C /* SOA iOS SDK.h in Headers */ = {isa = PBXBuildFile; fileRef = BC6B163F1E25756F00305A9C /* SOA iOS SDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BC9E664F1E525C8A008DF2CA /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664D1E525C8A008DF2CA /* Sort.swift */; };
+		BC9E66501E525C8A008DF2CA /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664E1E525C8A008DF2CA /* SortBy.swift */; };
+		BC9E66511E525CE2008DF2CA /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664D1E525C8A008DF2CA /* Sort.swift */; };
+		BC9E66521E525CE2008DF2CA /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664E1E525C8A008DF2CA /* SortBy.swift */; };
 		BCB4A7E51E33CDF500B47EC0 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
 		BCC1A88F1E33F7A300A7771A /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +109,8 @@
 		BC6B16451E25756F00305A9C /* SOA iOS SDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SOA iOS SDKTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6B164C1E25756F00305A9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6B16651E2578D600305A9C /* SOAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAManager.swift; sourceTree = "<group>"; };
+		BC9E664D1E525C8A008DF2CA /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
+		BC9E664E1E525C8A008DF2CA /* SortBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortBy.swift; sourceTree = "<group>"; };
 		BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +180,8 @@
 				6D1C74F81E30996000DBD67E /* FilterCondition.swift */,
 				6D1C74F91E30996000DBD67E /* Join.swift */,
 				6D1C74FA1E30996000DBD67E /* Query.swift */,
+				BC9E664D1E525C8A008DF2CA /* Sort.swift */,
+				BC9E664E1E525C8A008DF2CA /* SortBy.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -373,6 +381,7 @@
 				6D1C750D1E30996000DBD67E /* Dictionary+Merge.swift in Sources */,
 				6D1C75091E30996000DBD67E /* Resource.swift in Sources */,
 				6D1C75191E30996000DBD67E /* RemoteProcedureCall.swift in Sources */,
+				BC9E66501E525C8A008DF2CA /* SortBy.swift in Sources */,
 				6D1C75131E30996000DBD67E /* FilterCondition.swift in Sources */,
 				BCB4A7E51E33CDF500B47EC0 /* TypeAliases.swift in Sources */,
 				6D1C751F1E309BD200DBD67E /* Resource+JSON.swift in Sources */,
@@ -380,6 +389,7 @@
 				6D1C74FD1E30996000DBD67E /* NetworkClient.swift in Sources */,
 				6D1C75071E30996000DBD67E /* RequestType.swift in Sources */,
 				6D1C75151E30996000DBD67E /* Join.swift in Sources */,
+				BC9E664F1E525C8A008DF2CA /* Sort.swift in Sources */,
 				6D1C751C1E309B0D00DBD67E /* UploadFile.swift in Sources */,
 				6D1C75171E30996000DBD67E /* Query.swift in Sources */,
 				6D0FB31C1E268DA000BD8597 /* SOAManager.swift in Sources */,
@@ -395,6 +405,7 @@
 			files = (
 				6D0FB33E1E269C2000BD8597 /* SOAFilterTests.swift in Sources */,
 				6D1C750C1E30996000DBD67E /* Array+Remove.swift in Sources */,
+				BC9E66511E525CE2008DF2CA /* Sort.swift in Sources */,
 				6D1C75121E30996000DBD67E /* Filter.swift in Sources */,
 				6D0FB33C1E269B7C00BD8597 /* SOAJoinTests.swift in Sources */,
 				6D1C751D1E309B0D00DBD67E /* UploadFile.swift in Sources */,
@@ -402,6 +413,7 @@
 				6D1C75101E30996000DBD67E /* RemoteObject.swift in Sources */,
 				6DA4A4BF1E2CA67F00527EE3 /* RestMock.swift in Sources */,
 				6D65761F1E2F49CC00618B68 /* RPCTests.swift in Sources */,
+				BC9E66521E525CE2008DF2CA /* SortBy.swift in Sources */,
 				6D1C750E1E30996000DBD67E /* Dictionary+Merge.swift in Sources */,
 				6D0FB32F1E268DA200BD8597 /* SOAManager.swift in Sources */,
 				6D0FB3441E269EFA00BD8597 /* SOAObjectTests.swift in Sources */,

@@ -14,6 +14,11 @@ public struct Join: CustomStringConvertible, Equatable {
     public var description: String {
         return "\(field):\(filter)"
     }
+    
+    public init(field: String, filter: Filter) {
+        self.field = field
+        self.filter = filter
+    }
 }
 
 public func ==(lhs: Join, rhs: Join) -> Bool {

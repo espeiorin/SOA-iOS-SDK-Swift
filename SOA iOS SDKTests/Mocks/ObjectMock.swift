@@ -13,18 +13,11 @@ struct ObjectMock: RemoteObject {
 
     typealias EntityType = ObjectMock
     
-    var entity: String = ""
     var id: Int?
-    var valueDictionary: [String : Any]
+    var valueDictionary: JSONDictionary
     
-    init(entity: String) {
-        self.entity = entity
-        valueDictionary = [String:Any]()
-    }
-    
-    init(entity: String, id: Int) {
-        self.init(entity: entity)
-        self.id = id
+    public init() {
+        valueDictionary = JSONDictionary()
     }
     
     init?(dictionary: [String : Any]) {

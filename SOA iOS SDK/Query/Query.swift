@@ -16,48 +16,49 @@ public struct Query<T: RemoteObject>: Loadable {
     public let entity: String
     public var fields: [String]?
     
+    public var sort: Sort?
     public var offset: Int?
     public var limit: Int?
     
     private var filters = [Filter]()
     private var joins = [Join]()
     
-    init(entity: String) {
+    public init(entity: String) {
         self.entity = entity
     }
     
-    init(entity: String, fields: [String], offset: Int, limit: Int) {
+    public init(entity: String, fields: [String], offset: Int, limit: Int) {
         self.init(entity: entity)
         self.fields = fields
         self.offset = offset
         self.limit = limit
     }
     
-    mutating func append(filter: Filter) {
+    public mutating func append(filter: Filter) {
         filters.append(filter)
     }
     
-    mutating func remove(filter: Filter) {
+    public mutating func remove(filter: Filter) {
         filters.remove(filter)
     }
     
-    mutating func clearFilters() {
+    public mutating func clearFilters() {
         filters.removeAll()
     }
     
-    mutating func append(join: Join) {
+    public mutating func append(join: Join) {
         joins.append(join)
     }
     
-    mutating func remove(join: Join) {
+    public mutating func remove(join: Join) {
         joins.remove(join)
     }
     
-    mutating func clearJoins() {
+    public mutating func clearJoins() {
         joins.removeAll()
     }
     
-    func execute(completion: @escaping (EntityType?, Error?) -> Void) {
+    public func execute(completion: @escaping (EntityType?, Error?) -> Void) {
         
         var params = [String:Any]()
         
@@ -81,6 +82,10 @@ public struct Query<T: RemoteObject>: Loadable {
             params["join"] = joins.map({$0.description}).joined(separator: ",")
         }
         
+        if let sort = sort {
+            params["sort"] = sort.description
+        }
+        
         let resource = Resource<EntityType>(method: .get, path: entity.lowercased(), data: params, JSONHandle: { json in
             guard let json = json as? [JSONDictionary] else {
                 return nil
@@ -93,8 +98,6 @@ public struct Query<T: RemoteObject>: Loadable {
     }
     
     fileprivate func jsonParse(input: [String:Any]) -> T? {
-        var item = T(dictionary: input)
-        item?.entity = self.entity
-        return item
+        return T(dictionary: input)
     }
 }

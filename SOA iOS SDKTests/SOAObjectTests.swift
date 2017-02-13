@@ -11,7 +11,7 @@ import XCTest
 class SOAObjectTests: XCTestCase {
     
     let baseURL = URL(string: "http://example.com")
-    let entity = "Entity"
+    let entity = "ObjectMock"
     lazy var targetURL: URL? = {
         return self.baseURL?.appendingPathComponent(self.entity.lowercased())
     }()
@@ -35,9 +35,11 @@ class SOAObjectTests: XCTestCase {
     }
     
     func testObjectFetch() {
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let fetchExpectation = expectation(description: "Fetch Object")
         object.fetch { (object, error) in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNotNil(object)
             XCTAssertEqual(object?.id, 10)
             XCTAssertNil(error)
@@ -54,9 +56,11 @@ class SOAObjectTests: XCTestCase {
         restClient.completionData[.get] = mockedFailedFetch()
         SOAManager.shared.restClient = restClient
         
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let fetchExpectation = expectation(description: "Fetch Object")
         object.fetch { (object, error) in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNil(object)
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.localizedDescription, "Not Found")
@@ -70,9 +74,10 @@ class SOAObjectTests: XCTestCase {
     }
     
     func testObjectSave() {
-        var object = ObjectMock(entity: entity)
+        var object = ObjectMock()
         let saveExpectation = expectation(description: "Save new Object")
         object.save { object, error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock"))
             XCTAssertNotNil(object)
             XCTAssertEqual(object?.id, 11)
             XCTAssertNil(error)
@@ -89,9 +94,10 @@ class SOAObjectTests: XCTestCase {
         restClient.completionData[.post] = mockedFailedSave()
         SOAManager.shared.restClient = restClient
         
-        var object = ObjectMock(entity: entity)
+        var object = ObjectMock()
         let saveExpectation = expectation(description: "Save new Object")
         object.save { object, error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock"))
             XCTAssertNil(object)
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.localizedDescription, "Unauthorized")
@@ -105,9 +111,11 @@ class SOAObjectTests: XCTestCase {
     }
     
     func testObjectUpdate() {
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let updateExpectation = expectation(description: "Update Object")
         object.save { object, error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNotNil(object)
             XCTAssertEqual(object?.id, 10)
             XCTAssertNil(error)
@@ -124,9 +132,11 @@ class SOAObjectTests: XCTestCase {
         restClient.completionData[.put] = mockedFailedUpdate()
         SOAManager.shared.restClient = restClient
         
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let updateExpectation = expectation(description: "Update Object Failed")
         object.save { object, error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNil(object)
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.localizedDescription, "Not Found")
@@ -140,9 +150,11 @@ class SOAObjectTests: XCTestCase {
     }
     
     func testObjectDelete() {
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let deleteExpectation = expectation(description: "Delete Object")
         object.delete { error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNil(error)
             deleteExpectation.fulfill()
         }
@@ -156,9 +168,11 @@ class SOAObjectTests: XCTestCase {
     func testObjectDeleteFail() {
         restClient.completionData[.delete] = mockedFailedDelete()
         SOAManager.shared.restClient = restClient
-        var object = ObjectMock(entity: entity, id: 10)
+        var object = ObjectMock()
+        object.id = 10
         let deleteExpectation = expectation(description: "Delete Object Faield")
         object.delete { error in
+            XCTAssertEqual(self.mockData.requestURL, URL(string: "http://example.com/objectmock/10"))
             XCTAssertNotNil(error)
             XCTAssertEqual(error?.localizedDescription, "Not Found")
             deleteExpectation.fulfill()
