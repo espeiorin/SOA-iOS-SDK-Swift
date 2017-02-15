@@ -113,6 +113,27 @@ class RPCTests: XCTestCase {
             }
         }
     }
+    
+    func testVersionedCall() {
+        restClient.completionData[.post] = mockedSingleResultfullCall()
+        SOAManager.shared.restClient = restClient
+        
+        let remoteCall = RemoteProcedureCall<ObjectMock>(procedure: call, version: SOAVersion(rawValue: "v2"))
+        let params = ["max-id": 10]
+        let singleResultExpectation = expectation(description: "Success Call")
+        remoteCall.execute(params: params) { result, error in
+            XCTAssertEqual(self.mockData.requestURL, self.baseURL?.appendingPathComponent("v2").appendingPathComponent(self.call))
+            XCTAssertNotNil(result)
+            XCTAssertEqual(result?.count, 1)
+            XCTAssertNil(error)
+            singleResultExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 2) { error in
+            if let error = error {
+                print(error)
+            }
+        }
+    }
 }
 
 extension RPCTests {

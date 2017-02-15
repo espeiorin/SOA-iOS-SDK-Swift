@@ -13,10 +13,12 @@ public struct RemoteProcedureCall<T: JSONConvertible>: Loadable {
     
     public var requestType: RequestType
     public let procedure: String
+    public var version: SOAVersion
     
-    public init(procedure: String) {
+    public init(procedure: String, version: SOAVersion = .unknown) {
         self.procedure = procedure
         self.requestType = .rpc
+        self.version = version
     }
     
     public func execute(params: [String:Any]?, files: [String:UploadFile]?, completion: @escaping (EntityType?, Error?) -> Void) {
@@ -26,7 +28,9 @@ public struct RemoteProcedureCall<T: JSONConvertible>: Loadable {
             parameters["parameters"] = params
         }
         
-        let resource = Resource<EntityType>(method: .post, path: procedure, data: parameters, files: files, JSONHandle: { json in
+        let procedurePath = "\(version)/\(procedure)"
+        
+        let resource = Resource<EntityType>(method: .post, path: procedurePath, data: parameters, files: files, JSONHandle: { json in
             if let returnArray = json as? [[String:Any]] {
                 return returnArray.flatMap({T(dictionary: $0)})
             }

@@ -60,6 +60,8 @@
 		BC9E66501E525C8A008DF2CA /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664E1E525C8A008DF2CA /* SortBy.swift */; };
 		BC9E66511E525CE2008DF2CA /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664D1E525C8A008DF2CA /* Sort.swift */; };
 		BC9E66521E525CE2008DF2CA /* SortBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E664E1E525C8A008DF2CA /* SortBy.swift */; };
+		BC9E66581E550CE0008DF2CA /* SOAVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E66571E550CE0008DF2CA /* SOAVersion.swift */; };
+		BC9E66591E550D0E008DF2CA /* SOAVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9E66571E550CE0008DF2CA /* SOAVersion.swift */; };
 		BCB4A7E51E33CDF500B47EC0 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
 		BCC1A88F1E33F7A300A7771A /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */; };
 /* End PBXBuildFile section */
@@ -111,6 +113,7 @@
 		BC6B16651E2578D600305A9C /* SOAManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAManager.swift; sourceTree = "<group>"; };
 		BC9E664D1E525C8A008DF2CA /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		BC9E664E1E525C8A008DF2CA /* SortBy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortBy.swift; sourceTree = "<group>"; };
+		BC9E66571E550CE0008DF2CA /* SOAVersion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOAVersion.swift; sourceTree = "<group>"; };
 		BCB4A7E41E33CDF500B47EC0 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +155,7 @@
 				6D1C751E1E309BD200DBD67E /* Resource+JSON.swift */,
 				6D1C74EF1E30996000DBD67E /* RequestType.swift */,
 				6D1C74EE1E30996000DBD67E /* Loadable.swift */,
+				BC9E66571E550CE0008DF2CA /* SOAVersion.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -379,6 +383,7 @@
 				6D1C75111E30996000DBD67E /* Filter.swift in Sources */,
 				6D1C750B1E30996000DBD67E /* Array+Remove.swift in Sources */,
 				6D1C750D1E30996000DBD67E /* Dictionary+Merge.swift in Sources */,
+				BC9E66581E550CE0008DF2CA /* SOAVersion.swift in Sources */,
 				6D1C75091E30996000DBD67E /* Resource.swift in Sources */,
 				6D1C75191E30996000DBD67E /* RemoteProcedureCall.swift in Sources */,
 				BC9E66501E525C8A008DF2CA /* SortBy.swift in Sources */,
@@ -418,6 +423,7 @@
 				6D0FB32F1E268DA200BD8597 /* SOAManager.swift in Sources */,
 				6D0FB3441E269EFA00BD8597 /* SOAObjectTests.swift in Sources */,
 				6D1C75041E30996000DBD67E /* JSONConvertible.swift in Sources */,
+				BC9E66591E550D0E008DF2CA /* SOAVersion.swift in Sources */,
 				6D0FB3421E269EEF00BD8597 /* SOAQueryTests.swift in Sources */,
 				6D1C75061E30996000DBD67E /* Loadable.swift in Sources */,
 				6D1C75021E30996000DBD67E /* SOAHTTPMethod.swift in Sources */,

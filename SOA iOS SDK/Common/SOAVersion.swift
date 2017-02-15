@@ -18,3 +18,10 @@ public struct SOAVersion: RawRepresentable {
     
     static let unknown: SOAVersion = SOAVersion(rawValue: "")
 }
+
+
+extension SOAVersion: CustomStringConvertible {
+    public var description: String {
+        return rawValue
+    }
+}
